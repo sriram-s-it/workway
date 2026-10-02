@@ -162,6 +162,9 @@ export async function initDatabase(): Promise<void> {
       user: ENV.DB_USER,
       password: ENV.DB_PASSWORD,
       database: ENV.DB_NAME,
+      ssl: {
+        rejectUnauthorized: false,
+      },
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
