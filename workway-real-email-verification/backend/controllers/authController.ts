@@ -58,7 +58,7 @@ export class AuthController {
     // Generate 6-digit code
     const verificationCode = crypto.randomInt(100000, 999999).toString();
     const codeHash = await bcrypt.hash(verificationCode, 10);
-    const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString(); // 15 min expiry
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString().slice(0, 19).replace('T', ' '); // MySQL DATETIME, 15 min expiry
 
     try {
       const userId = await db.transaction(async (trx) => {
